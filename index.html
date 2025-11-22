@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Shaban - Data Analyst Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .bg-mesh {
+            position: fixed;
+            inset: 0;
+            opacity: 0.3;
+            pointer-events: none;
+            background: linear-gradient(135deg, #1e3a8a 0%, #581c87 50%, #831843 100%);
+        }
+
+        .bg-radial {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            transition: background 0.3s ease;
+        }
+
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            opacity: 0.08;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.35) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.35) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #facc15;
+        }
+
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #22d3ee, #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(34, 211, 238, 0.3);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #fbbf24;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin: 40px 0;
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #06b6d4, #2563eb);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(40px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            background: linear-gradient(90deg, #22d3ee, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .about-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .about-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(6,182,212,0.5);
+        }
+
+        .about-item-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .about-item h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .about-item p {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .skill-icon {
+            display: inline-flex;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+
+        .skill-card h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 9999px;
+            font-size: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #1e3a8a 0%, #581c87 50%, #831843 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 16px;
+        }
+
+        .project-card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .project-card:hover h3 {
+            color: #22d3ee;
+        }
+
+        .project-description {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .project-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .highlight-tag {
+            padding: 4px 12px;
+            background: rgba(34,197,94,0.2);
+            color: #86efac;
+            border-radius: 9999px;
+            font-size: 12px;
+            border: 1px solid rgba(34,197,94,0.3);
+        }
+
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tool-tag {
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.1);
+            color: #d1d5db;
+            border-radius: 9999px;
+            font-size: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .edu-cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+        }
+
+        .edu-cert-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(40px);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .edu-cert-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .edu-cert-icon {
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 28px;
+        }
+
+        .edu-cert-header h3 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .edu-content {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .edu-content p:first-child {
+            font-weight: bold;
+            font-size: 20px;
+            color: #22d3ee;
+            margin-bottom: 8px;
+        }
+
+        .edu-content p:last-child {
+            color: #9ca3af;
+        }
+
+        .cert-list {
+            list-style: none;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            color: #d1d5db;
+            margin-bottom: 16px;
+        }
+
+        .cert-dot {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            border-radius: 50%;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: #9ca3af;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #d1d5db;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+        }
+
+        .footer-copy {
+            color: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .subtitle { font-size: 18px; }
+            h2 { font-size: 32px; }
+            .edu-cert-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="bg-radial" id="bgRadial"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            
+            <div class="avatar">
+                <img src="https://i.postimg.cc/Qx968b8Y/Photo-For-Me.jpg" alt="Mohamed Shaban">
+            </div>
+            <h1>Mohamed Shaban</h1>
+            
+            <p class="subtitle">
+                Assist Research <span style="color: #22d3ee;">|</span> Data & Business Analyst <span style="color: #22d3ee;">|</span> Business Development
+            </p>
+            <p class="subtitle">
+                AI & ML Enthusiast <span style="color: #a855f7;">|</span> Data Scientist <span style="color: #a855f7;">|</span> DB Engineering
+            </p>
+
+            <div class="hero-badges">
+                <span class="badge">📊 2+ Years Experience</span>
+                <span class="badge">📍 Menoufia, Egypt</span>
+                <span class="badge">🎓 Computer Science</span>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="mailto:mooshaban24738914@gmail.com" class="btn btn-primary">📧 Get in Touch</a>
+                <a href="https://www.linkedin.com/in/mohamed-shaban-b52933368/" target="_blank" class="btn btn-secondary">💼 LinkedIn</a>
+                <a href="tel:+20101897641" class="btn btn-secondary">📞 Call Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section>
+        <div class="container">
+            <div class="section-card">
+                <h2>About Me</h2>
+                <p class="about-text">
+                    Computer Science student with strong hands-on experience in data analysis, business insights, 
+                    and building end-to-end data solutions. Skilled in Python, SQL, and Power BI, with the ability 
+                    to design efficient ETL pipelines and develop interactive dashboards that process large-scale datasets.
+                </p>
+
+                <div class="about-grid">
+                    <div class="about-item">
+                        <div class="about-item-icon">🔧</div>
+                        <h3>Data Engineering</h3>
+                        <p>ETL Processes, Data Warehousing, Data Modeling</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-item-icon">📊</div>
+                        <h3>Data Analysis & Visualization</h3>
+                        <p>Power BI, DAX, Power Pivot, Excel Dashboards</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-item-icon">💻</div>
+                        <h3>Programming & Querying</h3>
+                        <p>Python (Pandas, NumPy), SQL</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-item-icon">🧠</div>
+                        <h3>Data Science</h3>
+                        <p>Machine Learning, Predictive Modeling</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-item-icon">🔍</div>
+                        <h3>Research Assistance</h3>
+                        <p>Market Research, Data-Driven Insights</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-item-icon">📈</div>
+                        <h3>Business Development</h3>
+                        <p>Strategic Planning, Growth Analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 64px;">Technical Arsenal</h2>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon" style="background: linear-gradient(135deg, #22d3ee, #2563eb);">📊</div>
+                    <h3>Data Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">DAX</span>
+                        <span class="skill-tag">Looker Studio</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon" style="background: linear-gradient(135deg, #22c55e, #059669);">💻</div>
+                    <h3>Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Scikit-Learn</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon" style="background: linear-gradient(135deg, #a855f7, #ec4899);">🗄️</div>
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Query Optimization</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon" style="background: linear-gradient(135deg, #f97316, #dc2626);">📈</div>
+                    <h3>Analytics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">EDA</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Forecasting</span>
+                        <span class="skill-tag">PDF Extraction</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);">🧠</div>
+                    <h3>Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Model Development</span>
+                        <span class="skill-tag">Evaluation & Tuning</span>
+                        <span class="skill-tag">Predictive Analytics</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon" style="background: linear-gradient(135deg, #6366f1, #3b82f6);">🌟</div>
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Arabic (Native)</span>
+                        <span class="skill-tag">English</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">🏆</div>
+                    <h3>Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Team Collaboration</span>
+                        <span class="skill-tag">Personal Branding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section>
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 64px;">Featured Projects</h2>
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <a href="https://www.linkedin.com/posts/mohamed-shaban-b52933368_dataanalysis-dashboard-excel-activity-7366873991799554050-ti8f" target="_blank" class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/fyCMzJ9t/Dashboard-OF-Car-Sales.png" alt="Car Sales Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Car Sales Analytics Dashboard</h3>
+                            <span>🔗</span>
+                        </div>
+                        <p class="project-description">Built a comprehensive dashboard to analyze car sales trends, dealer performance, inventory management, and regional sales distribution</p>
+                        <div class="project-highlights">
+                            <span class="highlight-tag">Sales Forecasting</span>
+                            <span class="highlight-tag">Inventory Tracking</span>
+                            <span class="highlight-tag">Performance Metrics</span>
+                        </div>
+                        <div class="project-tools">
+                            <span class="tool-tag">Power BI</span>
+                            <span class="tool-tag">SQL</span>
+                            <span class="tool-tag">Excel</span>
+                            <span class="tool-tag">DAX</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/posts/mohamed-shaban-b52933368_datacleaning-datapreparation-datawrangling-activity-7374509297931538432-DM83" target="_blank" class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/G9n3gFrT/Dashboard-OF-Uber.png" alt="Uber Analytics Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Uber Analytics Dashboard</h3>
+                            <span>🔗</span>
+                        </div>
+                        <p class="project-description">Developed an interactive dashboard to analyze Uber trip data, including demand patterns, peak hours, and revenue insights</p>
+                        <div class="project-highlights">
+                            <span class="highlight-tag">Data Cleaning</span>
+                            <span class="highlight-tag">Data Modeling</span>
+                            <span class="highlight-tag">KPI Design</span>
+                        </div>
+                        <div class="project-tools">
+                            <span class="tool-tag">Power BI</span>
+                            <span class="tool-tag">Tableau</span>
+                            <span class="tool-tag">SQL</span>
+                            <span class="tool-tag">DAX</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/posts/mohamed-shaban-b52933368_datacleaning-datapreparation-datawrangling-activity-7370057858689839104-Xyzq" target="_blank" class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/Zn7hk662/Dashboard-of-Sales-Performance-(Cars).png" alt="Sales Performance Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Sales Performance Dashboard</h3>
+                            <span>🔗</span>
+                        </div>
+                        <p class="project-description">Built a dynamic dashboard to monitor sales performance, product profitability, and customer segmentation</p>
+                        <div class="project-highlights">
+                            <span class="highlight-tag">ETL Processes</span>
+                            <span class="highlight-tag">Trend Analysis</span>
+                            <span class="highlight-tag">Business Reporting</span>
+                        </div>
+                        <div class="project-tools">
+                            <span class="tool-tag">Power BI</span>
+                            <span class="tool-tag">Excel</span>
+                            <span class="tool-tag">SQL</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1ScxeBlK-NJ3zQdn5s4o_wAavDKcpSi1R" target="_blank" class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/tghGmbZ2/Screenshot-2025-11-20-214221.png" alt="World Population Analytics">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>World Population Analytics</h3>
+                            <span>🔗</span>
+                        </div>
+                        <p class="project-description">Conducted end-to-end analysis of global population trends and demographic shifts with forecasting insights</p>
+                        <div class="project-highlights">
+                            <span class="highlight-tag">Data Wrangling</span>
+                            <span class="highlight-tag">EDA</span>
+                            <span class="highlight-tag">Statistical Insights</span>
+                        </div>
+                        <div class="project-tools">
+                            <span class="tool-tag">Python</span>
+                            <span class="tool-tag">Pandas</span>
+                            <span class="tool-tag">Power BI</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1mKZYyIxNdhrvTfeJvQ0yR7gpRDVQ3Jfy" target="_blank" class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/zX7yBQkJ/Dashboard-OF-Prime-Video.png" alt="Prime Video Analytics">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Prime Video Content Analytics</h3>
+                            <span>🔗</span>
+                        </div>
+                        <p class="project-description">Designed a dashboard to analyze content library performance and viewer engagement</p>
+                        <div class="project-highlights">
+                            <span class="highlight-tag">Data Transformation</span>
+                            <span class="highlight-tag">Data Storytelling</span>
+                        </div>
+                        <div class="project-tools">
+                            <span class="tool-tag">Power BI</span>
+                            <span class="tool-tag">Tableau</span>
+                            <span class="tool-tag">Python</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://drive.google.com/drive/folders/1c8oaVJiaywIMABzKQEMt4I8XbJELJvp3" target="_blank" class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/rFQJ5Q9x/Screenshot-2025-11-22-213357.png" alt="Healthcare Management Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Healthcare Management Dashboard</h3>
+                            <span>🔗</span>
+                        </div>
+                        <p class="project-description">Developed a dashboard to track patient flow, appointment schedules, medical department KPIs, and resource utilization</p>
+                        <div class="project-highlights">
+                            <span class="highlight-tag">Data Modeling</span>
+                            <span class="highlight-tag">KPI Design</span>
+                            <span class="highlight-tag">Healthcare Analytics</span>
+                        </div>
+                        <div class="project-tools">
+                            <span class="tool-tag">Power BI</span>
+                            <span class="tool-tag">SQL</span>
+                            <span class="tool-tag">Excel</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1TmAyTsSZ6_yT77cp0d1ipX8vt408NHgu" target="_blank" class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/HLJRfgJX/Predictive-Model.webp" alt="Predictive Analytics & ML Models">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Predictive Analytics & ML Models</h3>
+                            <span>🔗</span>
+                        </div>
+                        <p class="project-description">Built multiple predictive models including time series forecasting and classification algorithms</p>
+                        <div class="project-highlights">
+                            <span class="highlight-tag">Time Series Forecasting</span>
+                            <span class="highlight-tag">Classification</span>
+                            <span class="highlight-tag">ML Algorithms</span>
+                        </div>
+                        <div class="project-tools">
+                            <span class="tool-tag">Python</span>
+                            <span class="tool-tag">Scikit-Learn</span>
+                            <span class="tool-tag">Statsmodels</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+<section>
+    <div class="container">
+        <div class="edu-cert-grid">
+            <!-- Education Card -->
+            <div class="edu-cert-card">
+                <div class="edu-cert-header">
+                    <div class="edu-cert-icon" style="background: linear-gradient(135deg, #22d3ee, #2563eb);">🎓</div>
+                    <h3>Education</h3>
+                </div>
+                <div class="edu-content">
+                    <p>Bachelor of Computer Science</p>
+                    <p>Menoufia University, Egypt</p>
+                </div>
+            </div>
+
+            <!-- Certifications Card -->
+            <div class="edu-cert-card">
+                <div class="edu-cert-header">
+                    <div class="edu-cert-icon" style="background: linear-gradient(135deg, #a855f7, #ec4899);">🏆</div>
+                    <h3>Certifications</h3>
+                </div>
+                <div class="edu-content">
+                    <p>BI Development Training (120 Hours) - ITI</p>
+                    <p>Professional Python & Predictive Modeling - DataCamp</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
